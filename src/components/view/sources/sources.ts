@@ -1,8 +1,8 @@
 import './sources.css';
-import { Article } from '../../types/models';
+import { Source } from '../../types/models';
 
 class Sources {
-    draw(data: Article[]) {
+    draw(data: Source[]) {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
 
@@ -10,9 +10,9 @@ class Sources {
             const sourceClone = sourceItemTemp.content.cloneNode(true) as DocumentFragment;
             const sourceName = sourceClone.querySelector('.source__item-name') as HTMLSpanElement;
 
-            sourceName.textContent = item.source.name;
+            sourceName.textContent = item.name;
             const sourceItem = sourceClone.querySelector('.source__item') as HTMLDivElement;
-            sourceItem.setAttribute('data-source-id', item.source.id);
+            sourceItem.setAttribute('data-source-id', item.id);
 
             fragment.append(sourceClone);
         });
