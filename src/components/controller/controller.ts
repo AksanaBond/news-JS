@@ -2,7 +2,7 @@ import { SourcesResponse, CallbackFn, EverythingResponse } from '../types/models
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
-    getSources(callback: CallbackFn<SourcesResponse>) {
+    public getSources(callback: CallbackFn<SourcesResponse>) {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -11,7 +11,7 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: Event, callback: CallbackFn<EverythingResponse>) {
+    public getNews(e: Event, callback: CallbackFn<EverythingResponse>) {
         let target = e.target as HTMLDivElement;
         const newsContainer = e.currentTarget as HTMLDivElement;
 

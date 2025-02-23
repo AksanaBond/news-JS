@@ -3,10 +3,18 @@ export interface EverythingResponse {
     articles: Article[];
 }
 
+export enum HttpMethod {
+    GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    DELETE = 'DELETE',
+}
+
 export interface SourcesResponse {
     status: string;
     sources: Source[];
 }
+
 export interface Source {
     id: string;
     name: string;

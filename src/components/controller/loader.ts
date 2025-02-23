@@ -1,4 +1,4 @@
-import { CallbackFn } from '../types/models';
+import { CallbackFn, HttpMethod } from '../types/models';
 
 type Options = Record<string, string>;
 
@@ -7,23 +7,24 @@ interface GetRespFirstArg {
     options?: Options;
 }
 class Loader {
-    baseLink: string;
-    options: Options;
+    private baseLink: string;
+    private options: Options;
+
     constructor(baseLink: string, options: Options = {}) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
-    getResp<TData>(
+    protected getResp<TData>(
         { endpoint, options = {} }: GetRespFirstArg,
         callback: CallbackFn<TData> = () => {
             console.error('No callback for GET response');
         }
     ) {
-        this.load('GET', endpoint, callback, options);
+        this.load(HttpMethod.GET, endpoint, callback, options);
     }
 
-    errorHandler(res: Response) {
+    private errorHandler(res: Response) {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -33,7 +34,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: Options, endpoint: string) {
+    private makeUrl(options: Options, endpoint: string) {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -44,7 +45,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load<TData>(method: string, endpoint: string, callback: CallbackFn<TData>, options: Options = {}) {
+    private load<TData>(method: HttpMethod, endpoint: string, callback: CallbackFn<TData>, options: Options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
