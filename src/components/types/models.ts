@@ -30,3 +30,5 @@ export interface Article {
     publishedAt: string;
     content: string;
 }
+
+export type CallbackFn<TData> = (data: TData) => void;

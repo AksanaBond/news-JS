@@ -1,12 +1,11 @@
+import { CallbackFn } from '../types/models';
+
 type Options = Record<string, string>;
 
 interface GetRespFirstArg {
     endpoint: string;
-    options: Options;
+    options?: Options;
 }
-
-type CallbackFn<TData> = (data: TData) => void;
-
 class Loader {
     baseLink: string;
     options: Options;
