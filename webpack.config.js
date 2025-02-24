@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const DotenvWebpackPlugin = require('dotenv-webpack');
 const EslintPlugin = require('eslint-webpack-plugin');
-
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index'),
@@ -32,8 +32,7 @@ const baseConfig = {
             filename: 'index.html',
         }),
         new CleanWebpackPlugin(),
-        new EslintPlugin({ extensions: 'ts' })
-
+        new EslintPlugin({ extensions: 'ts' }),
     ],
 };
 
