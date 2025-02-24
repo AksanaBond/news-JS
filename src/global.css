@@ -2,6 +2,10 @@ body {
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
 }
 
 header {
@@ -14,10 +18,11 @@ header h1 {
 }
 
 footer {
-    height: 100px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 }
 footer .copyright {
     font-size: 14px;
@@ -32,4 +37,22 @@ footer .copyright a:hover {
 }
 footer .copyright:before {
     content: '©';
+}
+.footer__logo {
+    width: 35px;
+    height: 35px;
+}
+.footer__github a {
+    color: #fff;
+    text-decoration: none;
+}
+@media (max-width: 500px) {
+    footer {
+        gap: 10px;
+        font-size: 10px;
+    }
+    .footer__logo {
+        width: 25px;
+        height: 25px;
+    }
 }
